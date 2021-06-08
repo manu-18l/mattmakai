@@ -15,7 +15,7 @@ USER_NUMBER = os.environ.get('USER_NUMBER', None)
 
 
 @app.route('/twilio', methods=['POST'])
-def inbound():
+def sms_from_twilio():
     response = twiml.Response()
     if request.form['From'] == USER_NUMBER:
         message = request.form['Body']
@@ -26,7 +26,7 @@ def inbound():
 
 
 @app.route('/slack', methods=['POST'])
-def outbound():
+def message_from_slack():
     if request.form['token'] == SLACK_WEBHOOK_SECRET:
         channel = request.form['channel_name']
         username = request.form['user_name']
