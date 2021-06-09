@@ -4,14 +4,13 @@ from slackclient import SlackClient
 from twilio import twiml
 from twilio.rest import TwilioRestClient
 
+SLACK_WEBHOOK_SECRET = os.environ.get('SLACK_WEBHOOK_SECRET', None)
+TWILIO_NUMBER = os.environ.get('TWILIO_NUMBER', None)
+USER_NUMBER = os.environ.get('USER_NUMBER', None)
 
 app = Flask(__name__)
 slack_client = SlackClient(os.environ.get('SLACK_TOKEN', None))
 twilio_client = TwilioRestClient()
-
-SLACK_WEBHOOK_SECRET = os.environ.get('SLACK_WEBHOOK_SECRET', None)
-TWILIO_NUMBER = os.environ.get('TWILIO_NUMBER', None)
-USER_NUMBER = os.environ.get('USER_NUMBER', None)
 
 
 @app.route('/twilio', methods=['POST'])
