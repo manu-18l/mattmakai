@@ -32,15 +32,9 @@ def slack_post():
         username = request.form['user_name']
         text = request.form['text']
         response_message = username + " in " + channel + " says: " + text
-        if not username.strip() == 'slackbot':
-            twilio_client.messages.create(to=USER_NUMBER, from_=TWILIO_NUMBER,
-                                          body=response_message)
+        twilio_client.messages.create(to=USER_NUMBER, from_=TWILIO_NUMBER,
+                                      body=response_message)
     return Response(), 200
-
-
-@app.route('/', methods=['GET'])
-def test():
-   return Response('It works!')
 
 
 if __name__ == '__main__':
